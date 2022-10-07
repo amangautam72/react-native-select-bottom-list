@@ -1,0 +1,36 @@
+{
+  "name": "react-native-select-bottom-list",
+  "version": "1.0.0",
+  "description": "A simple and fully customizable dropdown component that implements a select input with bottomlist and also provides a bottomSheet out of the box.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amangautam72/react-native-select-bottom-list.git"
+  },
+  "keywords": [
+    "react-native",
+    "react-native-component",
+    "react",
+    "native",
+    "android",
+    "ios",
+    "dropdown-component",
+    "react-native-select",
+    "select-list",
+    "bottom-sheet",
+    "react-native-bottom-sheet",
+    "ui-component"
+  ],
+  "author": "Aman Gautam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amangautam72/react-native-select-bottom-list/issues"
+  },
+  "homepage": "https://github.com/amangautam72/react-native-select-bottom-list#readme",
+  "devDependencies": {
+    "metro-react-native-babel-preset": "^0.73.1"
+  }
+}

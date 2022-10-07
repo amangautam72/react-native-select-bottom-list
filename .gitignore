@@ -1,0 +1,22 @@
+# Logs
+*.log
+npm-debug.log
+
+# Runtime data
+tmp
+build
+dist
+
+# Dependency directory
+node_modules
+
+
+#Cocoapods
+/examples/example1/Pods
+
+#android
+build/
+.idea
+.gradle
+local.properties
+*.iml
