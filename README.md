@@ -1,27 +1,31 @@
 # react-native-select-bottom-list
-A simple and fully customizable dropdown component that implements a select input with bottomList and provides bottomSheet component out of the box.
 
+A simple, lightweight and fully customisable Select Input List component and a BottomSheet made using Modal from react-native.
 
-![ezgif-5-a003bd8cd2](https://user-images.githubusercontent.com/28658574/194723713-5a1af66b-f28a-4d9c-aced-c3f0e2fca139.gif)  ![ezgif-5-a4574d3d86](https://user-images.githubusercontent.com/28658574/194723747-62f3d8af-eced-4003-9e26-cb0b2ce804c7.gif)
-
+![ezgif-5-a003bd8cd2](https://user-images.githubusercontent.com/28658574/194723713-5a1af66b-f28a-4d9c-aced-c3f0e2fca139.gif) ![ezgif-5-a4574d3d86](https://user-images.githubusercontent.com/28658574/194723747-62f3d8af-eced-4003-9e26-cb0b2ce804c7.gif)
 
 # Installation
 
 Using npm
+
 ```
 npm i react-native-select-bottom-list
 ```
 
 Using yarn
+
 ```
 yarn add react-native-select-bottom-list
 ```
 
-# Dropdown Usage
+# SelectList Usage
+
 ```
 import { SelectList } from 'react-native-select-bottom-list';
 ```
+
 Simple use case :
+
 ```
 const YourComponent = () => {
   const [value, setValue] = useState('Select');
@@ -29,7 +33,7 @@ const YourComponent = () => {
   return (
     <SafeAreaView>
       <SelectList
-        onSelect={setValue}
+        onSelect={(item,index) => setValue(item)}
         value={value}
         data={[
           'Change the world by being yourself – T.S Eliot',
@@ -47,16 +51,19 @@ const YourComponent = () => {
 ```
 
 # BottomSheet Usage
+
 ```
-import { BottomSheet } from 'react-native-select-bottom-list';
+import { BottomSheet, BottomSheetRefType } from 'react-native-select-bottom-list';
 ```
+
 Simply place any component or view inside <BottomSheet/> and use ref to open and close it.
 
 Example :
+
 ```
 const App = () => {
- 
-  const sheetRef = useRef(null);
+
+  const sheetRef = useRef<BottomSheetRefType>(null);
 
   const onPress = () => {
     sheetRef.current?.open();
@@ -72,7 +79,14 @@ const App = () => {
         ref={sheetRef}
         presentationStyle={'overFullScreen'}
         height={'30%'}>
-        <Text>AMAN</Text>
+        <View
+          style={{
+            padding: 100,
+          }}>
+          <Text style={{fontSize: 20, textAlign: 'center'}}>
+            Put Whatever you want to have here!
+          </Text>
+        </View>
       </BottomSheet>
     </SafeAreaView>
   );

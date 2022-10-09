@@ -1,6 +1,7 @@
 # Logs
 *.log
 npm-debug.log
+yarn-error.log
 
 # Runtime data
 tmp
@@ -14,9 +15,16 @@ node_modules
 #Cocoapods
 /examples/example1/Pods
 
+#example src folder
+/examples/example1/src
+
 #android
 build/
 .idea
 .gradle
 local.properties
 *.iml
+
+#OSX
+.DS_Store
+src/.DS_Store

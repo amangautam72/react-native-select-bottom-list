@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -16,6 +16,7 @@ import {
   Text,
   useColorScheme,
   View,
+  TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -26,34 +27,63 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import {SelectList} from 'react-native-select-bottom-list';
-
+import {SelectList, BottomSheet} from 'react-native-select-bottom-list';
+// import SelectList from './src/SelectList';
+// import BottomSheet from './src/BottomSheet';
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+const LISTDATA = [
+  {
+    title: 'Change the world by being yourself – T.S Eliot',
+  },
+  {
+    title: 'Every moment is a fresh beginning. – T.S Eliot',
+  },
+  {
+    title: 'When nothing goes right, go left. – Anonymous',
+  },
+  {
+    title: 'Success is the child of audacity. – Benjamin Disraeli',
+  },
+  {
+    title: 'Die with memories, not dreams. – Anonymous',
+  },
+  {
+    title: 'Never regret anything that made you smile. – Mark Twain',
+  },
+];
 
+const App = () => {
   const [value, setValue] = useState('Select');
+  const sheetRef = useRef(null);
 
-  const backgroundStyle = {
-    flex: 1,
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const onPress = () => {
+    sheetRef.current?.open();
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+    <SafeAreaView>
+      <Text onPress={onPress} style={{padding: 20}}>
+        Open BottomSheet
+      </Text>
+      <SelectList
+        onSelect={(item, index) => setValue(item)}
+        value={value}
+        data={['1', '2']}
+        headerTitle={'Quotes'}
       />
 
-      <SelectList
-        onSelect={setValue}
-        value={value}
-        data={['General', 'OBCNCL', 'SC', 'ST', 'EWS', 'Dont know']}
-        headerTitle={'Category'}
-      />
+      <BottomSheet ref={sheetRef} presentationStyle={'overFullScreen'}>
+        <View
+          style={{
+            padding: 100,
+          }}>
+          <Text style={{fontSize: 20, textAlign: 'center'}}>
+            Put Whatever you want to have here!
+          </Text>
+        </View>
+      </BottomSheet>
     </SafeAreaView>
   );
 };

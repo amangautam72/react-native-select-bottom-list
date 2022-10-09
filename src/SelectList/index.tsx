@@ -1,52 +1,20 @@
 
-import React, { Component, useRef } from 'react'
+import React, { Component, ForwardRefRenderFunction, useImperativeHandle, useRef } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, SectionList, FlatList, ViewProps, ViewStyle } from 'react-native'
 import BottomSheet from '../BottomSheet';
 import DropDownArrowDash from './dropDown.svg';
 import { BottomSheetRef } from '../BottomSheet/types'
+import {SelectListTypes, BottomListTypes } from './types';
 
-type SelectListTypes = {
-    style?: ViewStyle;
-    placeHolder?: string;
-    value: string;
-    data: Object;
-    type: string;
-    headerTitle?: string;
-    onSelect: Function;
-    renderItem?: Function;
-    presentationStyle?: 'fullScreen' | 'pageSheet' | 'formSheet' | 'overFullScreen' | undefined;
-    listHeight?: string | number;
-    renderIcon?: Function;
-    textStyle?: ViewStyle;
-}
+const BottomFlatList = ({ data, header, onItemPress, renderItem, itemStyle }: BottomListTypes) => {
 
-const BottomList = ({ data, header, onItemPress, renderItem }: { data: Object, header?: string, onItemPress: Function, renderItem?: any }) => {
-
-    const renderDefaultItem = ({ item, section }) => {
-        return <TouchableOpacity onPress={() => onItemPress(item)} style={styles.sectionItemStyle}>
-            <Text style={styles.sectionItemTextStyle}>{item?.value || item?.title || item}</Text>
-        </TouchableOpacity>
-    }
-
-    return <SectionList
-        sections={data}
-        keyExtractor={(item, index) => item + index}
-        renderItem={renderItem || renderDefaultItem}
-        renderSectionHeader={({ section: { head, data } }) => data.length ? (
-            <Text style={styles.sectionHeaderStyle}>{head}</Text>
-        ) : null}
-        stickyHeaderIndices={[]}
-        ListHeaderComponent={() => (
-            header ? <Text style={styles.sectionHeaderStyle}>{header}</Text> : null
-        )}
-    />
-};
-
-const BottomFlatList = ({ data, header, onItemPress, renderItem }: { data: Object, header?: string, onItemPress: Function, renderItem?: any }) => {
-
-    const renderDefaultItem = ({ item, section }) => {
-        return <TouchableOpacity onPress={() => onItemPress(item)} style={styles.sectionItemStyle}>
-            <Text style={styles.sectionItemTextStyle}>{item}</Text>
+    const renderDefaultItem = ({ item, index }) => {
+        let value = item
+        if(typeof item === 'object'){
+            value = item?.value || item?.title
+        }
+        return <TouchableOpacity onPress={() => onItemPress(item,index)} style={[styles.sectionItemStyle, itemStyle]}>
+            <Text style={styles.sectionItemTextStyle}>{value}</Text>
         </TouchableOpacity>
     }
     return <FlatList
@@ -60,39 +28,45 @@ const BottomFlatList = ({ data, header, onItemPress, renderItem }: { data: Objec
     />
 };
 
-export default function SelectList({ style, textStyle, placeHolder, value, data, type, headerTitle, onSelect, renderItem, presentationStyle, listHeight, renderIcon }: SelectListTypes) {
+const SelectList:  ForwardRefRenderFunction<BottomSheetRef,SelectListTypes> = (props, ref) => {
 
+    const { style, textStyle, placeHolder, value, data, listType, headerTitle, onSelect, renderItem, presentationStyle, listHeight, renderIcon, itemStyle } = props;
     const sheetRef = useRef<BottomSheetRef>(null)
 
-    const onPress = () => {
-        sheetRef.current?.open()
-    }
+    useImperativeHandle(ref, () => ({
+        open,
+        close,
+    }));
 
-    const onSelection = (data) => {
+    const close = () => {
         sheetRef.current?.close()
-        onSelect(data)
+    };
+
+    const open = () => {
+        sheetRef.current?.open()
+    };
+
+    const onSelection = (data, index) => {
+        close()
+        onSelect(data,index)
     }
 
     return (
         <View>
-            <TouchableOpacity onPress={onPress} style={[styles.inputStyle, style]}>
+            <TouchableOpacity onPress={open} style={[styles.inputStyle, style]}>
                 <Text numberOfLines={1} style={[styles.inputValueStyle, textStyle]}>{value || placeHolder || "Select"}</Text>
                 {renderIcon ? renderIcon() : <DropDownArrowDash />}
             </TouchableOpacity>
 
 
             <BottomSheet ref={sheetRef} presentationStyle={presentationStyle || 'overFullScreen'} height={listHeight}>
-                {type === 'sectionlist' ?
-                    <BottomList
-                        data={data || []}
-                        header={headerTitle}
-                        renderItem={renderItem || null}
-                        onItemPress={onSelection} /> :
                     <BottomFlatList
                         data={data || []}
                         header={headerTitle}
                         renderItem={renderItem || null}
-                        onItemPress={onSelection} />}
+                        itemStyle={itemStyle}
+                        onItemPress={onSelection} 
+                        />    
 
             </BottomSheet>
         </View>
@@ -115,9 +89,10 @@ const styles = StyleSheet.create({
         flex: 1
     },
     sectionItemStyle: {
-        borderWidth: 1,
+        borderBottomWidth: 1,
         borderColor: '#F4F4F4',
-        padding: 2
+        padding: 2,
+        paddingVertical:5
     },
     sectionItemTextStyle: {
         fontWeight: '400',
@@ -128,6 +103,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         padding: 12,
         backgroundColor: '#DEDEDE',
+        borderTopLeftRadius:20,
+        borderTopRightRadius:20,
         fontWeight: '600',
     },
 })
+
+
+export default React.forwardRef(SelectList)
