@@ -152,3 +152,11 @@ Contributions are always welcome! Feel free to open a new GitHub issue for any c
 ## Feedback
 
 Any feedback would be deeply appreciated, please feel free to reach out to me at amangautam72@gmail.com
+
+## Author
+
+Aman Gautam
+
+## License
+
+MIT
