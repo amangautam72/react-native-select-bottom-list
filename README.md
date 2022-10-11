@@ -11,7 +11,7 @@ A simple, lightweight and fully customisable Select Input List component and a B
 -   Fully Customisable styles.
 -   Included BottomSheet component for custom usage.
 -   Cross platform.
--   Writter in Typescript.
+-   Written in Typescript.
 
 # Installation
 
