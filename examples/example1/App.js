@@ -7,31 +7,10 @@
  */
 
 import React, {useState, useRef} from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-  TouchableOpacity,
-} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 
 import {SelectList, BottomSheet} from 'react-native-select-bottom-list';
-// import SelectList from './src/SelectList';
-// import BottomSheet from './src/BottomSheet';
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
 
 const LISTDATA = [
   {
@@ -68,9 +47,9 @@ const App = () => {
         Open BottomSheet
       </Text>
       <SelectList
-        onSelect={(item, index) => setValue(item)}
+        onSelect={(item, index) => setValue(item.title)}
         value={value}
-        data={['1', '2']}
+        data={LISTDATA}
         headerTitle={'Quotes'}
       />
 
