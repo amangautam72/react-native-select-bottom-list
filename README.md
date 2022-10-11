@@ -13,6 +13,15 @@ A simple, lightweight and fully customisable Select Input List component and a B
 -   Cross platform.
 -   Written in Typescript.
 
+## Features :rocket:
+
+-   Stable Release.
+-   Custom Header Component.
+-   More Custom Styles.
+-   SectionList Support.
+-   Search Feature.
+-   Better Documentation.
+
 # Installation
 
 Using npm
