@@ -35,6 +35,8 @@ Using yarn
 ```
 yarn add react-native-select-bottom-list
 ```
+## Note
+This library uses react-native-svg & react-native-svg-transformer. Please pass ‘() => null’ or ‘() => CustomIcon’ to renderIcon if these libraries are not setup. Otherwise this will lead to a crash.
 
 # SelectList Usage
 
