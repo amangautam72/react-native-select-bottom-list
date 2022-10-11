@@ -13,13 +13,15 @@ export type SelectListTypes = {
     listHeight?: string | number;
     renderIcon?: Function;
     textStyle?: ViewStyle;
-    itemStyle?: ViewStyle
+    itemStyle?: ViewStyle;
+    itemValueKey?: string; 
 }
 
 export type BottomListTypes = { 
-    data: Object, 
+    data: any, 
     header?: string, 
     onItemPress: Function, 
     renderItem?: any, 
-    itemStyle?: ViewStyle  
+    itemStyle?: ViewStyle;
+    itemValueKey?: string;   
 }

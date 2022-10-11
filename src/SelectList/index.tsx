@@ -6,12 +6,14 @@ import DropDownArrowDash from './dropDown.svg';
 import { BottomSheetRef } from '../BottomSheet/types'
 import {SelectListTypes, BottomListTypes } from './types';
 
-const BottomFlatList = ({ data, header, onItemPress, renderItem, itemStyle }: BottomListTypes) => {
+const BottomFlatList = ({ data, header, onItemPress, renderItem, itemStyle, itemValueKey }: BottomListTypes) => {
 
     const renderDefaultItem = ({ item, index }) => {
         let value = item
-        if(typeof item === 'object'){
-            value = item?.value || item?.title
+        if(itemValueKey){
+            value = item[itemValueKey]
+        }else if(typeof item === 'object'){
+            value = item?.value || item?.title || item?.text
         }
         return <TouchableOpacity onPress={() => onItemPress(item,index)} style={[styles.sectionItemStyle, itemStyle]}>
             <Text style={styles.sectionItemTextStyle}>{value}</Text>
@@ -30,7 +32,7 @@ const BottomFlatList = ({ data, header, onItemPress, renderItem, itemStyle }: Bo
 
 const SelectList:  ForwardRefRenderFunction<BottomSheetRef,SelectListTypes> = (props, ref) => {
 
-    const { style, textStyle, placeHolder, value, data, listType, headerTitle, onSelect, renderItem, presentationStyle, listHeight, renderIcon, itemStyle } = props;
+    const { style, textStyle, placeHolder, value, data, listType, headerTitle, onSelect, renderItem, presentationStyle, listHeight, renderIcon, itemStyle, itemValueKey } = props;
     const sheetRef = useRef<BottomSheetRef>(null)
 
     useImperativeHandle(ref, () => ({
@@ -66,6 +68,7 @@ const SelectList:  ForwardRefRenderFunction<BottomSheetRef,SelectListTypes> = (p
                         renderItem={renderItem || null}
                         itemStyle={itemStyle}
                         onItemPress={onSelection} 
+                        itemValueKey={itemValueKey}
                         />    
 
             </BottomSheet>
