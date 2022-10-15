@@ -8,9 +8,18 @@
 
 import React, {useState, useRef} from 'react';
 
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import {SelectList, BottomSheet} from 'react-native-select-bottom-list';
+// import SelectList from './src/SelectList';
+// import BottomSheet from './src/BottomSheet';
 
 const LISTDATA = [
   {
@@ -33,6 +42,25 @@ const LISTDATA = [
   },
 ];
 
+const SECTIONDATA = [
+  {
+    title: 'Main dishes',
+    data: ['Pizza', 'Burger', 'Risotto'],
+  },
+  {
+    title: 'Sides',
+    data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
+  },
+  {
+    title: 'Drinks',
+    data: ['Water', 'Coke', 'Beer'],
+  },
+  {
+    title: 'Desserts',
+    data: ['Cheese Cake', 'Ice Cream'],
+  },
+];
+
 const App = () => {
   const [value, setValue] = useState('Select');
   const sheetRef = useRef(null);
@@ -42,17 +70,17 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
       <Text onPress={onPress} style={{padding: 20}}>
         Open BottomSheet
       </Text>
       <SelectList
+        data={LISTDATA}
         onSelect={(item, index) => setValue(item.title)}
         value={value}
-        data={LISTDATA}
         headerTitle={'Quotes'}
+        showSearch={true}
       />
-
       <BottomSheet ref={sheetRef} presentationStyle={'overFullScreen'}>
         <View
           style={{

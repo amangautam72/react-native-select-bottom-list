@@ -12,6 +12,7 @@ A simple, lightweight and fully customisable Select Input List component and a B
 -   Included BottomSheet component for custom usage.
 -   Cross platform.
 -   Written in Typescript.
+-   Basic Search Support.
 
 ## Coming Soon Features :rocket:
 
@@ -19,7 +20,6 @@ A simple, lightweight and fully customisable Select Input List component and a B
 -   Custom Header Component.
 -   More Custom Styles.
 -   SectionList Support.
--   Search Feature.
 -   Better Documentation.
 
 # Installation
@@ -35,7 +35,9 @@ Using yarn
 ```
 yarn add react-native-select-bottom-list
 ```
+
 ## Note
+
 This library uses react-native-svg & react-native-svg-transformer. Please pass ‘() => null’ or ‘() => CustomIcon’ to renderIcon if these libraries are not setup. Otherwise this will lead to a crash.
 
 # SelectList Usage
@@ -117,29 +119,33 @@ const App = () => {
 
 ## SelectList Props
 
-| Name                | Type               | Description                                                                                                                                |
-| :------------------ | :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
-| `style`             | `ViewStyle`        | **Optional**. Custom style for input                                                                                                       |
-| `placeHolder`       | `string`           | **Optional**. Placeholder for input                                                                                                        |
-| `textStyle`         | `ViewStyle`        | **Optional**. Custom style for input value                                                                                                 |
-| `value`             | `string`           | **Required**. Selected value from list                                                                                                     |
-| `data`              | `Object`           | **Required**. list of data to render in bottom list                                                                                        |
-| `listType`          | `string`           | **Optional**. Not Required as of now, defaults to 'list', 'sectionlist' to be added in future                                              |
-| `itemStyle`         | `ViewStyle`        | **Optional**. List item style                                                                                                              |
-| `itemValueKey`      | `string`           | **Optional**. Used to render list item with key other than 'title','value'&'text'                                                          |
-| `headerTitle`       | `string`           | **Optional**. Header value of title                                                                                                        |
-| `onSelect`          | `Function`         | **Required**. Function invoked on list item selection, gives back (item, index)                                                            |
-| `renderItem`        | `Function`         | **Optional**. Custom list item, gives back ({item, index})                                                                                 |
-| `presentationStyle` | `string`           | **Optional**. iOS only, this is similar to presentationStyle of Modal from react native                                                    |
-| `listHeight`        | `string Or number` | **Optional**. height of Bottomlist                                                                                                         |
-| `renderIcon`        | `Function`         | **Optional** Required when you don't need icon(Sol: pass '() => null') or if react-native-svg & react-native-svg-transformer are not setup |
+| Name                | Type               | Description                                                                                                                                                                          |
+| :------------------ | :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `style`             | `ViewStyle`        | **Optional**. Custom style for input                                                                                                                                                 |
+| `placeHolder`       | `string`           | **Optional**. Placeholder for input                                                                                                                                                  |
+| `textStyle`         | `ViewStyle`        | **Optional**. Custom style for input value                                                                                                                                           |
+| `value`             | `string`           | **Required**. Selected value from list                                                                                                                                               |
+| `data`              | `Object`           | **Required**. list of data to render in bottom list                                                                                                                                  |
+| `listType`          | `string`           | **Optional**. Not Required as of now, defaults to 'list', 'sectionlist' to be added in future                                                                                        |
+| `itemStyle`         | `ViewStyle`        | **Optional**. List Item container style                                                                                                                                              |
+| `itemTextStyle`     | `TextStyle`        | **Optional**. List Item text style                                                                                                                                                   |
+| `headerStyle`       | `TextStyle`        | **Optional**. List Header Container style                                                                                                                                            |
+| `headerTextStyle`   | `TextStyle`        | **Optional**. List Header Text style                                                                                                                                                 |
+| `itemValueKey`      | `string`           | **Optional**. Used to render list item with key other than 'title','value'&'text'. itemValueKey doesn't work for nested key, use renderItem for nested key                           |
+| `headerTitle`       | `string`           | **Optional**. Header value of title                                                                                                                                                  |
+| `onSelect`          | `Function`         | **Required**. Function invoked on list item selection, gives back (item, index)                                                                                                      |
+| `renderItem`        | `Function`         | **Optional**. Custom list item, gives back ({item, index}, sheetRef). sheetRef containes close() & open() method to close & open respectively                                        |
+| `presentationStyle` | `string`           | **Optional**. iOS only, this is similar to presentationStyle of Modal from react native                                                                                              |
+| `listHeight`        | `string Or number` | **Optional**. height of Bottomlist                                                                                                                                                   |
+| `renderIcon`        | `Function`         | **Optional** Required when you don't need icon or if react-native-svg & react-native-svg-transformer are not setup, (Solution : just pass '() => null')                              |
+| `showSearch`        | `boolean`          | **Optional** Search Input to search items. Search only works for defualt list. Don't use renderItem in case you want to use search. For better user experience use 'listheight' prop |
 
-## SelectList Methods
+## BottomSheet Methods
 
 | Name    | Type       | Description                                          |
 | :------ | :--------- | :--------------------------------------------------- |
-| `close` | `Function` | **Optional**. To close Bottom List, Use ref to close |
-| `open`  | `Function` | **Optional**. To open Bottom List, Use ref to open   |
+| `close` | `Function` | **Optional**. To close BottomSheet, Use ref to close |
+| `open`  | `Function` | **Optional**. To open BottomSheet, Use ref to open   |
 
 ## BottomSheet Props
 
@@ -148,13 +154,6 @@ const App = () => {
 | `children`          | `ReactNode` | **Optional**. Content inside bottom sheet                    |
 | `height`            | `string`    | **Optional**. Height of BottomSheet                          |
 | `presentationStyle` | `ViewStyle` | **Optional**. iOS only, this is similar to presentationStyle |
-
-## BottomSheet Methods
-
-| Name    | Type       | Description                                          |
-| :------ | :--------- | :--------------------------------------------------- |
-| `close` | `Function` | **Optional**. To close BottomSheet, Use ref to close |
-| `open`  | `Function` | **Optional**. To open BottomSheet, Use ref to open   |
 
 ## Contributing
 
