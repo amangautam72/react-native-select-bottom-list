@@ -29,3 +29,4 @@ local.properties
 .DS_Store
 src/.DS_Store
 examples/example1/.DS_Store
+dist
