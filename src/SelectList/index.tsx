@@ -119,6 +119,10 @@ const SelectList = (props: SelectListTypes) => {
 			: renderDefaultItem(data);
 	};
 
+	const onModalClose = () => {
+		setSearchValue("");
+	};
+
 	return (
 		<View>
 			<TouchableOpacity onPress={open} style={[styles.inputStyle, style]}>
@@ -135,7 +139,7 @@ const SelectList = (props: SelectListTypes) => {
 				ref={sheetRef}
 				presentationStyle={presentationStyle || "overFullScreen"}
 				height={listHeight}
-				onModalHide={() => setSearchValue("")}
+				onModalHide={onModalClose}
 			>
 				{showSearch ? (
 					<TextInput
@@ -144,7 +148,7 @@ const SelectList = (props: SelectListTypes) => {
 							styles.inputStyle,
 							{ marginTop: 15, marginHorizontal: 10 },
 						]}
-						onChangeText={(text) =>
+						onChangeText={(text: string) =>
 							text.length > 2
 								? setSearchValue(text)
 								: setSearchValue("")
