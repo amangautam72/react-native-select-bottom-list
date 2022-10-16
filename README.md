@@ -2,7 +2,12 @@
 
 A simple, lightweight and fully customisable Select Input List component and a BottomSheet made using Modal from react-native.
 
-![ezgif-5-a003bd8cd2](https://user-images.githubusercontent.com/28658574/194723713-5a1af66b-f28a-4d9c-aced-c3f0e2fca139.gif) ![ezgif-5-a4574d3d86](https://user-images.githubusercontent.com/28658574/194723747-62f3d8af-eced-4003-9e26-cb0b2ce804c7.gif)
+### Demo
+
+![first](https://user-images.githubusercontent.com/28658574/196030420-96af6eec-9231-4924-8819-054f43cdd00d.gif) ![second](https://user-images.githubusercontent.com/28658574/196030455-17ab0a12-2fce-4718-a959-e0a79deca1f9.gif)  ![third](https://user-images.githubusercontent.com/28658574/196030566-c553d03c-c733-431c-9988-6edffa7e3b0b.gif)  ![forth](https://user-images.githubusercontent.com/28658574/196030585-38fec4e7-9098-4122-9f11-86bc11fa114c.gif)
+
+
+
 
 ## Features
 
