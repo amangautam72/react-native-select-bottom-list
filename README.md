@@ -41,10 +41,6 @@ Using yarn
 yarn add react-native-select-bottom-list
 ```
 
-## Note
-
-This library uses react-native-svg & react-native-svg-transformer. Please pass ‘() => null’ or ‘() => CustomIcon’ to renderIcon if these libraries are not setup. Otherwise this will lead to a crash.
-
 # SelectList Usage
 
 ```
@@ -141,9 +137,9 @@ const App = () => {
 | `onSelect`          | `Function`         | **Required**. Function invoked on list item selection, gives back (item, index)                                                                                                      |
 | `renderItem`        | `Function`         | **Optional**. Custom list item, gives back ({item, index}, sheetRef). sheetRef containes close() & open() method to close & open respectively                                        |
 | `presentationStyle` | `string`           | **Optional**. iOS only, this is similar to presentationStyle of Modal from react native                                                                                              |
-| `listHeight`        | `string Or number` | **Optional**. height of Bottomlist                                                                                                                                                   |
-| `renderIcon`        | `Function`         | **Optional** Required when you don't need icon or if react-native-svg & react-native-svg-transformer are not setup, (Solution : just pass '() => null')                              |
-| `showSearch`        | `boolean`          | **Optional** Search Input to search items. Search only works for defualt list. Don't use renderItem in case you want to use search. For better user experience use 'listheight' prop |
+| `listHeight`        | `string Or number` | **Optional**. Height of Bottomlist                                                                                                                                                   |
+| `renderIcon`        | `Function`         | **Optional**. Render icon                                |
+| `showSearch`        | `boolean`          | **Optional**. Search Input to search items. Search only works for defualt list. Don't use renderItem in case you want to use search. For better user experience use 'listheight' prop |
 
 ## BottomSheet Methods
 
