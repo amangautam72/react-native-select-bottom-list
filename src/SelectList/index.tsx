@@ -8,7 +8,6 @@ import {
 	TextInput,
 } from "react-native";
 import BottomSheet from "../BottomSheet";
-import DropDownArrowDash from "./dropDown.svg";
 import { BottomSheetRef } from "../BottomSheet/types";
 import { SelectListTypes, BottomListTypes } from "./types";
 
@@ -21,7 +20,7 @@ const BottomFlatList = ({
 		<FlatList
 			style={{ paddingTop: 10 }}
 			data={data}
-			keyExtractor={(item, index) => item + index}
+			keyExtractor={(item, index) => index.toString()}
 			renderItem={renderItem}
 			ListHeaderComponent={renderListHeaderComponent}
 		/>
@@ -132,7 +131,7 @@ const SelectList = (props: SelectListTypes) => {
 				>
 					{value || placeHolder || "Select"}
 				</Text>
-				{renderIcon ? renderIcon() : <DropDownArrowDash />}
+				{renderIcon ? renderIcon() : null}
 			</TouchableOpacity>
 
 			<BottomSheet

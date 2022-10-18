@@ -12,9 +12,8 @@
   "dependencies": {
     "react": "18.1.0",
     "react-native": "0.70.2",
-    "react-native-select-bottom-list": "^1.0.4",
-    "react-native-svg": "^13.2.0",
-    "react-native-svg-transformer": "^1.0.0"
+    "react-native-gesture-handler": "^2.7.1",
+    "react-native-select-bottom-list": "../../react-native-select-bottom-list-1.0.5.tgz"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

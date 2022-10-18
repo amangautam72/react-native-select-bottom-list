@@ -6,6 +6,8 @@
  * @flow strict-local
  */
 
+// import 'react-native-gesture-handler';
+
 import React, {useState, useRef} from 'react';
 
 import {
@@ -18,6 +20,13 @@ import {
 } from 'react-native';
 
 import {SelectList, BottomSheet} from 'react-native-select-bottom-list';
+// import SelectList from './src/SelectList';
+// import BottomSheet from './src/BottomSheet';
+
+import {
+  GestureHandlerRootView,
+  GestureDetector,
+} from 'react-native-gesture-handler';
 
 const LISTDATA = [
   {
@@ -68,18 +77,25 @@ const App = () => {
   };
 
   return (
+    // <GestureHandlerRootView style={{flex: 1}}>
     <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
       <Text onPress={onPress} style={{padding: 20}}>
         Open BottomSheet
       </Text>
       <SelectList
-        data={LISTDATA}
+        style={{margin: 10}}
+        placeHolder={'Select'}
+        data={[...LISTDATA, ...LISTDATA, ...LISTDATA]}
+        showSearch={true}
         onSelect={(item, index) => setValue(item.title)}
         value={value}
         headerTitle={'Quotes'}
-        showSearch={true}
       />
-      <BottomSheet ref={sheetRef} presentationStyle={'overFullScreen'}>
+      <BottomSheet
+        ref={sheetRef}
+        presentationStyle={'overFullScreen'}
+        // height={400}
+      >
         <View
           style={{
             padding: 100,
@@ -90,6 +106,7 @@ const App = () => {
         </View>
       </BottomSheet>
     </SafeAreaView>
+    // </GestureHandlerRootView>
   );
 };
 
