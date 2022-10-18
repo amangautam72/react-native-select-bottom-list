@@ -20,8 +20,6 @@ import {
 } from 'react-native';
 
 import {SelectList, BottomSheet} from 'react-native-select-bottom-list';
-// import SelectList from './src/SelectList';
-// import BottomSheet from './src/BottomSheet';
 
 import {
   GestureHandlerRootView,
