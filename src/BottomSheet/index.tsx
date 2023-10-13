@@ -1,20 +1,15 @@
 import {
-	View,
 	StyleSheet,
-	SafeAreaView,
 	Modal,
 	TouchableOpacity,
 	Animated,
-	InteractionManager,
 } from "react-native";
 import React, {
 	useMemo,
 	useState,
 	useRef,
 	useImperativeHandle,
-	ForwardRefRenderFunction,
-	useEffect,
-	useCallback,
+	ForwardRefRenderFunction
 } from "react";
 import { BottomSheetProps, BottomSheetRef } from "./types";
 
