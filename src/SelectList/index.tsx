@@ -3,13 +3,14 @@ import {
 	View,
 	Text,
 	TouchableOpacity,
-	StyleSheet,
 	FlatList,
 	TextInput,
 } from "react-native";
 import BottomSheet from "../BottomSheet";
 import { BottomSheetRef } from "../BottomSheet/types";
 import { SelectListTypes, BottomListTypes } from "./types";
+import styles from './styles'
+
 
 const BottomFlatList = ({
 	data,
@@ -34,7 +35,6 @@ const SelectList = (props: SelectListTypes) => {
 		placeHolder,
 		value,
 		data,
-		listType = "list",
 		headerTitle,
 		headerStyle,
 		headerTextStyle,
@@ -164,38 +164,6 @@ const SelectList = (props: SelectListTypes) => {
 	);
 };
 
-const styles = StyleSheet.create({
-	inputStyle: {
-		flexDirection: "row",
-		borderWidth: 1,
-		padding: 10,
-		alignItems: "center",
-		borderColor: "#DEDEDE",
-		borderRadius: 5,
-		justifyContent: "space-between",
-	},
-	inputValueStyle: {
-		fontWeight: "400",
-		flex: 1,
-	},
-	sectionItemStyle: {
-		borderBottomWidth: 1.5,
-		borderColor: "#F4F4F4",
-		padding: 12,
-	},
-	sectionItemTextStyle: {
-		fontWeight: "400",
-	},
-	sectionHeaderStyle: {
-		padding: 12,
-		borderColor: "#DEDEDE",
-		borderBottomWidth: 1,
-		fontWeight: "600",
-	},
-	sectionHeaderTextStyle: {
-		fontSize: 16,
-		fontWeight: "600",
-	},
-});
+\
 
 export default SelectList;
